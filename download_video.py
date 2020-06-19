@@ -13,7 +13,7 @@ COURSES = {
 }
 
 # download directory for videos
-DOWNLOAD_DIRECTORY = "./downloads/"
+DOWNLOAD_DIRECTORY = "./downloads/video/"
 
 ###################################################################
 ##                                                               ##

@@ -1,3 +1,5 @@
-downloads/*
-!downloads/.gitkeep
+downloads/pdf/*
+!downloads/pdf/.gitkeep
+downloads/video/*
+!downloads/video/.gitkeep
 .vscode
