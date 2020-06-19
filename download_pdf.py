@@ -20,6 +20,7 @@ DOWNLOAD_DIRECTORY = "./downloads/pdf/"
 
 import requests
 import re
+import os
 from bs4 import BeautifulSoup
 
 # settings
