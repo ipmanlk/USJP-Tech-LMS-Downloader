@@ -1,5 +1,6 @@
 downloads/pdf/*
 !downloads/pdf/.gitkeep
+!downloads/pdf/log.txt
 downloads/video/*
 !downloads/video/.gitkeep
 .vscode
