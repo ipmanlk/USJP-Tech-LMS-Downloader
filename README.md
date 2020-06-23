@@ -1,15 +1,13 @@
 ## USJP-Tech-LMS-Downloader
 _Download and sync online lecture videos & PDFs from Japura Tech LMS to your local machine easily!._
 
-### Disclaimer: This only works on Linux & Mac at the moment. Really appreciate if someone can help with the windows compatibility.
-
 ### Features
 - Automatically download all lecture PDFs.
 - Automatically download all lecture videos.
 - Skip already downloaded lectures (can be used to keep your local copy in sync with LMS one).
 
 ### Prerequisites
-- Python 3 ([Download](https://www.python.org/)).
+- Python 3 or above ([Download](https://www.python.org/)).
 - pipenv ([Download](https://pipenv.pypa.io/en/latest/)).
 
 
