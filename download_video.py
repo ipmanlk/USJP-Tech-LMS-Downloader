@@ -1,3 +1,10 @@
+import requests
+import re
+import os
+from bs4 import BeautifulSoup
+from pathlib import Path
+from tqdm import tqdm
+
 ###################################################################
 ##                        CONFIGURATION                          ##
 ###################################################################
@@ -13,17 +20,11 @@ COURSES = {
 }
 
 # download directory for videos
-DOWNLOAD_DIRECTORY = "./downloads/video/"
+DOWNLOAD_DIRECTORY = Path("./downloads/video/")
 
 ###################################################################
 ##                                                               ##
 ###################################################################
-
-
-import requests
-import os
-from bs4 import BeautifulSoup
-from tqdm import tqdm
 
 # settings
 payload = {
@@ -47,8 +48,8 @@ for course_name, course_url in COURSES.items():
     print("Log: Checking for course directory inside the download directory: " + course_name)
 
     # if directory for each course is not present, make those
-    if not(os.path.isdir(DOWNLOAD_DIRECTORY + course_name)):
-        os.mkdir(DOWNLOAD_DIRECTORY + course_name)
+    if not(os.path.isdir(DOWNLOAD_DIRECTORY / course_name)):
+        os.mkdir(DOWNLOAD_DIRECTORY / course_name)
 
     print("Log: Grabbing video links from " + course_name)
 
@@ -91,7 +92,7 @@ for course_name, vid_links in vids.items():
         vid_file_name = os.path.basename(vid_link)
 
         # download path for the video file
-        vid_file_path = DOWNLOAD_DIRECTORY + course_name + "/" + vid_file_name
+        vid_file_path = DOWNLOAD_DIRECTORY / course_name / vid_file_name
 
         print("Log: Checking if " + vid_file_name + " already exists.")
 

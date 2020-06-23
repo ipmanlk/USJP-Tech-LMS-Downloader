@@ -1,3 +1,9 @@
+import requests
+import re
+import os
+from bs4 import BeautifulSoup
+from pathlib import Path
+
 ###################################################################
 ##                        CONFIGURATION                          ##
 ###################################################################
@@ -12,16 +18,11 @@ COURSES = {
 }
 
 # download directory for PDFs
-DOWNLOAD_DIRECTORY = "./downloads/pdf/"
+DOWNLOAD_DIRECTORY = Path("./downloads/pdf/")
 
 ###################################################################
 ##                                                               ##
 ###################################################################
-
-import requests
-import re
-import os
-from bs4 import BeautifulSoup
 
 # settings
 payload = {
@@ -45,8 +46,8 @@ for course_name, course_url in COURSES.items():
     print("Log: Checking for course directory inside the download directory: " + course_name)
 
     # if directory for each course is not present, make those
-    if not(os.path.isdir(DOWNLOAD_DIRECTORY + course_name)):
-        os.mkdir(DOWNLOAD_DIRECTORY + course_name)
+    if not(os.path.isdir(DOWNLOAD_DIRECTORY / course_name)):
+        os.mkdir(DOWNLOAD_DIRECTORY / course_name)
 
     print("Log: Grabbing PDF links from " + course_name)
 
@@ -73,7 +74,7 @@ for course_name, pdf_links in pdfs.items():
    
     for pdf_link in pdf_links:
         # check if pdf file is already downloaded
-        with open(DOWNLOAD_DIRECTORY + "log.txt", 'r') as log_file:
+        with open(DOWNLOAD_DIRECTORY / "log.txt", 'r') as log_file:
             log_file_content = log_file.read()
             
             if (pdf_link in log_file_content):
@@ -94,7 +95,7 @@ for course_name, pdf_links in pdfs.items():
         pdf_file_name = pdf_file_name[1:]
 
         # path to save pdf file
-        pdf_file_path = DOWNLOAD_DIRECTORY + course_name + "/" + pdf_file_name
+        pdf_file_path = DOWNLOAD_DIRECTORY / course_name / pdf_file_name
 
         # write pdf to the disk
         pdf_file = open(pdf_file_path, "wb")
@@ -102,7 +103,7 @@ for course_name, pdf_links in pdfs.items():
         pdf_file.close()
 
         # write a log as pdf downloaded (to skip duplicate downloads)
-        log_file = open(DOWNLOAD_DIRECTORY + "log.txt", "a")
+        log_file = open(DOWNLOAD_DIRECTORY / "log.txt", "a")
         log_file.write(pdf_link + "\n")
         log_file.close()
 
