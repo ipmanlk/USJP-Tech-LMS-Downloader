@@ -9,6 +9,3 @@ verify_ssl = true
 requests = "*"
 beautifulsoup4 = "*"
 tqdm = "*"
-
-[requires]
-python_version = "3.6"
